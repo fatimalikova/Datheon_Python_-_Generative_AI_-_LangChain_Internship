@@ -1,0 +1,12 @@
+INVOICE No: INV-2026-044
+Date: October 12, 2026
+From: BlueSky Software LLC, Baku
+Bill To: Nova Trading
+
+Description              Qty   Unit Price   Total
+Website maintenance       3     120.00      360.00
+Hosting (annual)          1     200.00      200.00
+
+Subtotal: 560.00
+VAT 18%: 100.80
+TOTAL: 660.80 AZN

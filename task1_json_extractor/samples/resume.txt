@@ -1,0 +1,13 @@
+Aysel Mammadova
+aysel.m@example.com | +994 50 000 00 00
+
+Backend developer with 3 years of experience in .NET.
+
+Skills: C#, ASP.NET Core, SQL Server, Docker, Git
+
+Experience:
+- TechWave, Backend Developer, 2023-2026. Built REST APIs.
+- DataLab, Junior Developer, 2021-2023. Maintained internal tools.
+
+Education:
+- Azerbaijan Technical University, BSc Computer Engineering, 2017-2021
