@@ -2,13 +2,14 @@
 
 Hands-on projects built during the Datheon Python + Generative AI & LangChain internship, using Python, Google Gemini and LangChain.
 
-**Completed tasks:** Task 1, Task 2 and Task 3 (3 of 4).
+**Completed tasks:** all 4 tasks.
 
 | Task | Project | Run command |
 |------|---------|-------------|
 | 1 | Structured LLM prompt pipeline and JSON extractor (invoice and resume) | `python -m task1_json_extractor.main --type invoice --file task1_json_extractor/samples/invoice.txt` |
 | 2 | Document Q&A assistant with RAG and vector embeddings | `python -m task2_rag.main` |
 | 3 | Multi-tool autonomous AI agent | `python -m task3_agent.agent` |
+| 4 | Interactive full-stack AI chatbot with Streamlit | `streamlit run task4_streamlit/app.py` |
 
 ## Project structure
 
@@ -18,6 +19,7 @@ Hands-on projects built during the Datheon Python + Generative AI & LangChain in
 ├── task1_json_extractor/     # prompts, Pydantic schemas, extraction script, sample documents
 ├── task2_rag/                # RAG pipeline (loader, splitter, ChromaDB, answer chain) and data/ folder
 ├── task3_agent/              # agent loop, tools and data/ folder
+├── task4_streamlit/          # Streamlit chat UI (app.py)
 ├── config.py                 # loads settings from .env
 ├── requirements.txt
 └── .env.example
@@ -45,7 +47,7 @@ Requirements: Python 3.10 or newer and a free Gemini API key from https://aistud
    EMBED_MODEL=gemini-embedding-001
    ```
 
-Run every command from the project root folder.
+Run every command from the project root folder. The `.env` file is listed in `.gitignore` and is never uploaded.
 
 ## Task 1: Structured LLM Prompt Pipeline and JSON Extractor
 
@@ -111,6 +113,7 @@ Cavab: I could not find this in the documents.
 Notes:
 - PDFs must contain selectable text. Scanned PDFs (page images without text) return no content and would need OCR.
 - Page numbers are shown for PDF files. Plain TXT files have no pages.
+- The console prompts (`Sual`, `Cavab`, `Mənbələr`) are in Azerbaijani; the documents and answers can be in any language the model supports.
 
 ## Task 3: Multi-Tool Autonomous AI Agent
 
@@ -152,6 +155,24 @@ Notes:
 - Web search results come from DuckDuckGo and can be noisy or incomplete, so answers about the "latest version" of a fast-moving library may not be exact.
 - The agent stops after a maximum of 8 steps.
 
+## Task 4: Interactive Full-Stack AI Chatbot with Streamlit
+
+Wraps the Task 2 RAG pipeline in a web chat interface.
+
+Features:
+- Streaming token output (`st.write_stream`)
+- Chat history stored in `st.session_state`; the last 6 messages are passed to the model as conversation context
+- Source file and page number shown under every answer
+- Sidebar: upload a PDF (the documents are re-indexed) and clear the conversation
+
+Run:
+```
+streamlit run task4_streamlit/app.py
+```
+Then open http://localhost:8501. On the first launch Streamlit asks for an email; leave it blank and press Enter.
+
+Note: refreshing the browser page resets the conversation, because session state lives per browser session.
+
 ## Troubleshooting
 
 | Problem | Fix |
@@ -160,8 +181,8 @@ Notes:
 | `503 UNAVAILABLE ... high demand` | Temporary. The scripts retry automatically. Try a `lite` model or wait a few minutes. |
 | `403 PERMISSION_DENIED ... API has not been used` | Enable the Generative Language API for your Google project, or create a new key in AI Studio. |
 | `GOOGLE_API_KEY not found` | Create the `.env` file in the project root. |
-| Task 2 ignores new documents | Run `python -m task2_rag.main --rebuild`. |
+| Task 2 or Task 4 ignores new documents | Run `python -m task2_rag.main --rebuild`, or upload the PDF in the Streamlit sidebar. |
 
 ## Tech stack
 
-Python 3, Google Gemini (`google-genai`, `langchain-google-genai`), LangChain, ChromaDB, Pydantic, DuckDuckGo Search (`ddgs`), pypdf
+Python 3, Google Gemini (`google-genai`, `langchain-google-genai`), LangChain, ChromaDB, Pydantic, Streamlit, DuckDuckGo Search (`ddgs`), pypdf
