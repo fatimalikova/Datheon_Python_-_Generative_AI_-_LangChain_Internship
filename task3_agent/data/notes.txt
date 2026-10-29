@@ -1,0 +1,3 @@
+Project budget: 4500 AZN
+Team size: 5 developers
+Deadline: 2026-12-20

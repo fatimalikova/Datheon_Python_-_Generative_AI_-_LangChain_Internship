@@ -1,7 +1,6 @@
 python-dotenv
 pydantic
 google-genai
-
 langchain
 langchain-core
 langchain-community
@@ -10,3 +9,4 @@ langchain-google-genai
 langchain-chroma
 chromadb
 pypdf
+ddgs
